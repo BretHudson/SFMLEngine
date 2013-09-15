@@ -61,11 +61,10 @@ namespace BEngine
 			_world->update();
 	}
 
-	void render(sf::RenderWindow* Window)
+	void render(sf::RenderTexture* Buffer)
 	{
 		if (_world)
-			_world->render(Window);
-		Window->setView(camera);
+			_world->render(Buffer);
 	}
 
 	World* world()

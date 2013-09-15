@@ -20,11 +20,15 @@ Player::Player(double x, double y) : Entity::Entity(x, y)
 	rspeed = 850.0f;
 	jspeed = 700.0f;
 	gspeed = 1850.0f;
+
+	state = STANDING;
+
+	type = "player";
 }
 
 void Player::update()
 {
-	type = "player";
+	state = STANDING;
 
 	input();
 	modSpeeds();
@@ -35,19 +39,22 @@ void Player::update()
 	cx = BEngine::camera.getCenter().x + (x - BEngine::camera.getCenter().x) * 3 * BEngine::elapsed;
 	cy = BEngine::camera.getCenter().y + (y - BEngine::camera.getCenter().y) * 3 * BEngine::elapsed;
 
-	BEngine::camera.setSize(800 + (200 * ((abs(xspeed) + abs(yspeed)) / mspeed)), 600 + (150 * ((abs(xspeed) + abs(yspeed)) / mspeed)));
+	//BEngine::camera.setSize(800 + (200 * ((abs(xspeed) + abs(yspeed)) / mspeed)), 600 + (150 * ((abs(xspeed) + abs(yspeed)) / mspeed)));
+	BEngine::camera.setSize(800, 600);
 
 	BEngine::camera.setCenter(cx, cy);
-	BEngine::camera.rotate(30 * BEngine::elapsed);
+	//BEngine::camera.rotate(30 * BEngine::elapsed);
+
+	BEngine::log("State: " + BEngine::itos(state));
 }
 
-void Player::render(sf::RenderWindow* Window)
+void Player::render(sf::RenderTexture* Buffer)
 {
 	sf::RectangleShape rect(sf::Vector2f(width, height));
 	rect.setFillColor(sf::Color(255, 127 + x, 9 + y, 255));
 	//rect.setFillColor(sf::Color(255, 127, 9, 255));
 	rect.setPosition(this->x, this->y);
-	Window->draw(rect);
+	Buffer->draw(rect);
 }
 
 void Player::input()
@@ -92,9 +99,15 @@ void Player::input()
 void Player::accelerate(int dir)
 {
 	if (BEngine::sign(xspeed) == BEngine::sign(dir))
+	{
+		state = (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)) ? RUNNING : WALKING;
 		xspeed += aspeed * dir * BEngine::elapsed;
+	}
 	else
+	{
+		state = TURNAROUND;
 		xspeed += fspeed * dir * BEngine::elapsed;
+	}
 }
 
 void Player::modSpeeds()

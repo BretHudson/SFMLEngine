@@ -12,7 +12,7 @@ class Entity
 		virtual void added();
 		virtual void update();
 		virtual void removed();
-		virtual void render(sf::RenderWindow* Window);
+		virtual void render(sf::RenderTexture* Buffer);
 
 		bool collide(std::string type, double x, double y);
 

@@ -20,7 +20,7 @@ int main()
 
 	Window.setKeyRepeatEnabled(false);
 
-	//BEngine::framerate = 60;
+	BEngine::framerate = 45;
 
 	World level;
 	BEngine::world(&level);
@@ -60,8 +60,8 @@ int main()
 	sf::Text text;
 	text.setFont(font);
 
-	sf::RenderTexture renderTexture;
-	if (!renderTexture.create(200, 100))
+	sf::RenderTexture buffer;
+	if (!buffer.create(800, 600))
 	{
 		//
 	}
@@ -89,17 +89,18 @@ int main()
 		// Update the game
 		BEngine::update();
 
-		text.setString(BEngine::itos(1000 / BEngine::elapsed / 1000));
+		text.setString("FPS: " + BEngine::itos(1000 / BEngine::elapsed / 1000));
 
 		// Temp drawing
-		renderTexture.clear();
-		renderTexture.draw(text);
-		renderTexture.display();
+		buffer.clear();
+		buffer.setView(BEngine::camera);
+		buffer.display();
 
 		// Render the game to the window
 		Window.clear();
-		BEngine::render(&Window);
-		Window.draw(sf::Sprite(renderTexture.getTexture()));
+		BEngine::render(&buffer);
+		Window.draw(sf::Sprite(buffer.getTexture()));
+		Window.draw(text);
 		Window.display();
 	}
 

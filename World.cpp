@@ -49,14 +49,14 @@ void World::end()
 	active = false;
 }
 
-void World::render(sf::RenderWindow* Window)
+void World::render(sf::RenderTexture* Buffer)
 {
 	std::vector<Entity*>::iterator renderListIterator;
 
 	for (renderListIterator = _renderList.begin(); renderListIterator != _renderList.end(); renderListIterator++)
 	{
 		Entity* e = (*renderListIterator);
-		e->render(Window);
+		e->render(Buffer);
 	}
 }
 

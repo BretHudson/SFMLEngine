@@ -38,12 +38,12 @@ void Entity::removed()
 	//
 }
 
-void Entity::render(sf::RenderWindow* Window)
+void Entity::render(sf::RenderTexture* Buffer)
 {
 	sf::RectangleShape rect(sf::Vector2f(width, height));
 	rect.setFillColor(sf::Color(255, 40, 255, 255));
 	rect.setPosition(this->x, this->y);
-	Window->draw(rect);
+	Buffer->draw(rect);
 }
 
 bool Entity::collide(std::string type, double x, double y)

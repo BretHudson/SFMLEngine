@@ -59,7 +59,7 @@ namespace BEngine
 	extern void log(sf::String s);
 	extern void error(sf::String s);
 	extern void update();
-	extern void render(sf::RenderWindow* Window);
+	extern void render(sf::RenderTexture* Buffer);
 
 	extern World* world();
 	extern void world(World* w);

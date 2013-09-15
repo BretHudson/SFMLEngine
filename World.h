@@ -16,7 +16,7 @@ class World
 		virtual void begin();
 		virtual void update();
 		virtual void end();
-		virtual void render(sf::RenderWindow* Window);
+		virtual void render(sf::RenderTexture* Buffer);
 
 		void add(Entity* e);
 		std::vector<Entity*> getEntities();

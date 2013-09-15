@@ -11,7 +11,7 @@ class Player : public Entity
 		Player(double x, double y);
 
 		void update();
-		void render(sf::RenderWindow* Window);
+		void render(sf::RenderTexture* Buffer);
 
 		// Move functions
 		void input();
@@ -21,7 +21,19 @@ class Player : public Entity
 		void moveX();
 		void moveY();
 
+		enum State {
+			STANDING,
+			WALKING,
+			RUNNING,
+			TURNAROUND,
+			JUMPING,
+			FALLING,
+			SLIDING
+		};
+
 	private:
+		State state;
+
 		float xspeed;
 		float yspeed;
 		float aspeed;

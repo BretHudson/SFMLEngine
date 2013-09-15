@@ -341,7 +341,7 @@
 	<string>
 	<vector>
 
-1379201727 source:c:\users\bret\c++projects\sfmltutorial2\main.cpp
+1379280261 source:c:\users\bret\c++projects\sfmltutorial2\main.cpp
 	<SFML/Graphics.hpp>
 	<iostream>
 	<cstdlib>
@@ -684,41 +684,41 @@
 	<string>
 	<vector>
 
-1379203405 source:c:\users\bret\c++projects\sfmltutorial2\bengine.cpp
+1379280150 source:c:\users\bret\c++projects\sfmltutorial2\bengine.cpp
 	"BEngine.h"
 	<SFML/Graphics.hpp>
 	<iostream>
 	<sstream>
 
-1379200978 c:\users\bret\c++projects\sfmltutorial2\bengine.h
+1379280069 c:\users\bret\c++projects\sfmltutorial2\bengine.h
 	"World.h"
 	<SFML/Graphics.hpp>
 
-1379199680 c:\users\bret\c++projects\sfmltutorial2\world.h
+1379280114 c:\users\bret\c++projects\sfmltutorial2\world.h
 	<SFML/Graphics.hpp>
 	"Entity.h"
 
-1379199913 source:c:\users\bret\c++projects\sfmltutorial2\world.cpp
+1379280090 source:c:\users\bret\c++projects\sfmltutorial2\world.cpp
 	"World.h"
 	"BEngine.h"
 	<iostream>
 
-1379164807 c:\users\bret\c++projects\sfmltutorial2\entity.h
+1379280132 c:\users\bret\c++projects\sfmltutorial2\entity.h
 	<SFML/Graphics.hpp>
 
-1379199571 source:c:\users\bret\c++projects\sfmltutorial2\entity.cpp
+1379280298 source:c:\users\bret\c++projects\sfmltutorial2\entity.cpp
 	"Entity.h"
 	"BEngine.h"
 	<iostream>
 
-1379202225 source:c:\users\bret\c++projects\sfmltutorial2\entities\player.cpp
+1379281651 source:c:\users\bret\c++projects\sfmltutorial2\entities\player.cpp
 	"Player.h"
 	<iostream>
 	<cstdlib>
 	"../BEngine.h"
 	"../Entity.h"
 
-1379201146 c:\users\bret\c++projects\sfmltutorial2\entities\player.h
+1379281875 c:\users\bret\c++projects\sfmltutorial2\entities\player.h
 	<SFML/Graphics.hpp>
 	"../Entity.h"
 
