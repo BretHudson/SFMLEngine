@@ -19,16 +19,29 @@ Player::Player(double x, double y) : Entity::Entity(x, y)
 	mspeed = 620.0f;
 	rspeed = 850.0f;
 	jspeed = 700.0f;
+	wjspeed = 950.0f;
 	gspeed = 1850.0f;
 
 	state = STANDING;
 
 	type = "player";
+
+	StateName.push_back("standing");
+	StateName.push_back("walking");
+	StateName.push_back("running");
+	StateName.push_back("turning around");
+	StateName.push_back("slowing down");
+	StateName.push_back("jumping");
+	StateName.push_back("falling");
+	StateName.push_back("sliding");
 }
 
 void Player::update()
 {
-	state = STANDING;
+	if (yspeed != 0)
+		state = STANDING;
+	else
+		state = (yspeed > 0) ? FALLING : JUMPING;
 
 	input();
 	modSpeeds();
@@ -45,7 +58,7 @@ void Player::update()
 	BEngine::camera.setCenter(cx, cy);
 	//BEngine::camera.rotate(30 * BEngine::elapsed);
 
-	BEngine::log("State: " + BEngine::itos(state));
+	//BEngine::log("State: " + StateName[state]);
 }
 
 void Player::render(sf::RenderTexture* Buffer)
@@ -59,11 +72,16 @@ void Player::render(sf::RenderTexture* Buffer)
 
 void Player::input()
 {
-	running = (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift));
+	inputx();
+	inputy();
+}
 
+void Player::inputx()
+{
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
-		if (!running)
+		state = (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)) ? RUNNING : WALKING;
+		if (!state != RUNNING)
 			accelerate(-1);
 		else
 			accelerate(-2);
@@ -71,23 +89,48 @@ void Player::input()
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
-		if (!running)
+		state = (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)) ? RUNNING : WALKING;
+		if (state != RUNNING)
 			accelerate(1);
 		else
 			accelerate(2);
 	}
 
-	if ((!sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) && (!sf::Keyboard::isKeyPressed(sf::Keyboard::Right)))
+	if ((!sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) && (!sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) && (abs(xspeed) > 0))
 	{
+		state = SLOWDOWN;
+
 		if (abs(xspeed) > fspeed * BEngine::elapsed)
 			xspeed -= fspeed * BEngine::sign(xspeed) * BEngine::elapsed;
 		else
 			xspeed = 0;
 	}
+}
 
-	if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) && (collide("solid", x, y + 1)))
+void Player::inputy()
+{
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
-		yspeed = -jspeed;
+		if (!collide("solid", x, y + 1))
+		{
+			if (collide("solid", x - 1, y))
+			{
+				BEngine::log("WALL JUMP");
+				state = JUMPING;
+				yspeed = -wjspeed;
+			}
+			else if (collide("solid", x + 1, y))
+			{
+				BEngine::log("WALL JUMP");
+				state = JUMPING;
+				yspeed = -wjspeed;
+			}
+		}
+		else
+		{
+			state = JUMPING;
+			yspeed = -jspeed;
+		}
 	}
 
 	if ((!sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) && (yspeed < 0))
@@ -100,7 +143,6 @@ void Player::accelerate(int dir)
 {
 	if (BEngine::sign(xspeed) == BEngine::sign(dir))
 	{
-		state = (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)) ? RUNNING : WALKING;
 		xspeed += aspeed * dir * BEngine::elapsed;
 	}
 	else

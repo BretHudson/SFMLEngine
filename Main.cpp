@@ -89,7 +89,7 @@ int main()
 		// Update the game
 		BEngine::update();
 
-		text.setString("FPS: " + BEngine::itos(1000 / BEngine::elapsed / 1000));
+		text.setString("FPS: " + BEngine::itos(1000 / BEngine::elapsed / 1000) + " Y: " + BEngine::ftos(p.y));
 
 		// Temp drawing
 		buffer.clear();

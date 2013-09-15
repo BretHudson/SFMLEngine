@@ -13,25 +13,30 @@ class Player : public Entity
 		void update();
 		void render(sf::RenderTexture* Buffer);
 
+		enum State {
+			STANDING,
+			WALKING,
+			RUNNING,
+			TURNAROUND,
+			SLOWDOWN,
+			JUMPING,
+			FALLING,
+			SLIDING
+		};
+
+		std::vector<std::string> StateName;
+
+	private:
 		// Move functions
 		void input();
+		void inputx();
+		void inputy();
 		void accelerate(int dir);
 		void modSpeeds();
 		void movePlayer();
 		void moveX();
 		void moveY();
 
-		enum State {
-			STANDING,
-			WALKING,
-			RUNNING,
-			TURNAROUND,
-			JUMPING,
-			FALLING,
-			SLIDING
-		};
-
-	private:
 		State state;
 
 		float xspeed;
@@ -42,6 +47,7 @@ class Player : public Entity
 		float rspeed;
 		float gspeed;
 		float jspeed;
+		float wjspeed;
 		bool running;
 };
 
