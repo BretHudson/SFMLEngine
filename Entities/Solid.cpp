@@ -6,6 +6,8 @@
 #include "../BEngine.h"
 #include "../Entity.h"
 
+#include "../Input.h"
+
 Solid::Solid(double x, double y) : Entity::Entity(x, y)
 {
 	layer = 0;

@@ -2,6 +2,7 @@
 #define _BENGINE_H_
 
 #include "World.h"
+#include "Input.h"
 
 #include <SFML/Graphics.hpp>
 
@@ -53,6 +54,9 @@ namespace BEngine
 	extern sf::Time _deltaTime;
 	extern int framerate;
 	extern float elapsed;
+	extern int fps;
+	extern int framesThisSecond;
+	extern float elapsedThisSecond;
 
 	extern sf::View camera;
 

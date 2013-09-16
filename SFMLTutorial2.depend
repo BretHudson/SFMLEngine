@@ -341,13 +341,14 @@
 	<string>
 	<vector>
 
-1379290422 source:c:\users\bret\c++projects\sfmltutorial2\main.cpp
+1379312247 source:c:\users\bret\c++projects\sfmltutorial2\main.cpp
 	<SFML/Graphics.hpp>
 	<iostream>
 	<cstdlib>
 	<string>
 	<ctime>
 	"BEngine.h"
+	"Input.h"
 	"Entities\Player.h"
 	"Entities\Solid.h"
 
@@ -685,21 +686,22 @@
 	<string>
 	<vector>
 
-1379280150 source:c:\users\bret\c++projects\sfmltutorial2\bengine.cpp
+1379312288 source:c:\users\bret\c++projects\sfmltutorial2\bengine.cpp
 	"BEngine.h"
 	<SFML/Graphics.hpp>
 	<iostream>
 	<sstream>
 
-1379280069 c:\users\bret\c++projects\sfmltutorial2\bengine.h
+1379302171 c:\users\bret\c++projects\sfmltutorial2\bengine.h
 	"World.h"
+	"Input.h"
 	<SFML/Graphics.hpp>
 
 1379280114 c:\users\bret\c++projects\sfmltutorial2\world.h
 	<SFML/Graphics.hpp>
 	"Entity.h"
 
-1379290592 source:c:\users\bret\c++projects\sfmltutorial2\world.cpp
+1379297430 source:c:\users\bret\c++projects\sfmltutorial2\world.cpp
 	"World.h"
 	"BEngine.h"
 	<iostream>
@@ -712,25 +714,36 @@
 	"BEngine.h"
 	<iostream>
 
-1379286521 source:c:\users\bret\c++projects\sfmltutorial2\entities\player.cpp
+1379311673 source:c:\users\bret\c++projects\sfmltutorial2\entities\player.cpp
 	"Player.h"
 	<iostream>
 	<cstdlib>
+	<cmath>
 	"../BEngine.h"
 	"../Entity.h"
 
-1379285643 c:\users\bret\c++projects\sfmltutorial2\entities\player.h
+1379311759 c:\users\bret\c++projects\sfmltutorial2\entities\player.h
 	<SFML/Graphics.hpp>
 	"../Entity.h"
 
-1379290539 source:c:\users\bret\c++projects\sfmltutorial2\entities\solid.cpp
+1379297206 source:c:\users\bret\c++projects\sfmltutorial2\entities\solid.cpp
 	"Solid.h"
 	<iostream>
 	<cstdlib>
 	"../BEngine.h"
 	"../Entity.h"
+	"../Input.h"
 
 1379287309 c:\users\bret\c++projects\sfmltutorial2\entities\solid.h
 	<SFML/Graphics.hpp>
 	"../Entity.h"
+
+1379311478 source:c:\users\bret\c++projects\sfmltutorial2\input.cpp
+	"Input.h"
+	"BEngine.h"
+	<cstdarg>
+
+1379311501 c:\users\bret\c++projects\sfmltutorial2\input.h
+	<iostream>
+	<vector>
 

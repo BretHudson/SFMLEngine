@@ -19,6 +19,7 @@ class Player : public Entity
 			RUNNING,
 			TURNAROUND,
 			SLOWDOWN,
+			FRICTION,
 			JUMPING,
 			FALLING,
 			SLIDING
@@ -26,7 +27,7 @@ class Player : public Entity
 
 		std::vector<std::string> StateName;
 
-	private:
+	public:
 		// Move functions
 		void input();
 		void inputx();
@@ -41,14 +42,19 @@ class Player : public Entity
 
 		float xspeed;
 		float yspeed;
+
 		float aspeed;
 		float fspeed;
 		float mspeed;
 		float rspeed;
+
 		float gspeed;
 		float jspeed;
+		float sjspeed;
 		float wjspeed;
-		bool running;
+
+		float wallTimer;
+		float wallTimerLimit;
 };
 
 #endif

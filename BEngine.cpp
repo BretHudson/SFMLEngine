@@ -37,8 +37,11 @@ namespace BEngine
 
 	sf::Clock _deltaClock;
 	sf::Time _deltaTime;
-	extern int framerate = 0;
+	int framerate = 0;
+	int fps = 0;
+	int framesThisSecond;
 	float elapsed;
+	float elapsedThisSecond = 0;
 
 	sf::View camera;
 
@@ -56,6 +59,15 @@ namespace BEngine
 	{
 		_deltaTime = _deltaClock.restart();
 		elapsed = _deltaTime.asSeconds();
+		elapsedThisSecond += elapsed;
+
+		framesThisSecond++;
+		if (elapsedThisSecond > 1.0f)
+		{
+			fps = framesThisSecond;
+			elapsedThisSecond -= 1.0f;
+			framesThisSecond = 0;
+		}
 
 		if (_world)
 			_world->update();

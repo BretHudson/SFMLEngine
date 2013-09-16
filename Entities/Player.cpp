@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <cstdlib>
+#include <cmath>
 
 #include "../BEngine.h"
 #include "../Entity.h"
@@ -14,13 +15,21 @@ Player::Player(double x, double y) : Entity::Entity(x, y)
 
 	xspeed = 0.0f;
 	yspeed = 0.0f;
-	aspeed = 1250.0f;
+
+	// Horizontal speeds
+	aspeed = 1150.0f;
 	fspeed = 1550.0f;
 	mspeed = 620.0f;
-	rspeed = 850.0f;
+	rspeed = 930.0f;
+
+	// Vertical speeds
 	jspeed = 700.0f;
+	sjspeed = 800.0f;
 	wjspeed = 950.0f;
 	gspeed = 1850.0f;
+
+	wallTimer = 0;
+	wallTimerLimit = 0.35;
 
 	state = STANDING;
 
@@ -31,9 +40,12 @@ Player::Player(double x, double y) : Entity::Entity(x, y)
 	StateName.push_back("running");
 	StateName.push_back("turning around");
 	StateName.push_back("slowing down");
+	StateName.push_back("friction");
 	StateName.push_back("jumping");
 	StateName.push_back("falling");
 	StateName.push_back("sliding");
+
+	Input::define("fuck", sf::Keyboard::A, sf::Keyboard::B);
 }
 
 void Player::update()
@@ -46,17 +58,6 @@ void Player::update()
 	input();
 	modSpeeds();
 	movePlayer();
-
-	// Set camera stuff
-	float cx, cy;
-	cx = BEngine::camera.getCenter().x + (x - BEngine::camera.getCenter().x) * 3 * BEngine::elapsed;
-	cy = BEngine::camera.getCenter().y + (y - BEngine::camera.getCenter().y) * 3 * BEngine::elapsed;
-
-	//BEngine::camera.setSize(800 + (200 * ((abs(xspeed) + abs(yspeed)) / mspeed)), 600 + (150 * ((abs(xspeed) + abs(yspeed)) / mspeed)));
-	BEngine::camera.setSize(800, 600);
-
-	BEngine::camera.setCenter(cx, cy);
-	//BEngine::camera.rotate(30 * BEngine::elapsed);
 
 	//BEngine::log("State: " + StateName[state]);
 }
@@ -78,62 +79,73 @@ void Player::input()
 
 void Player::inputx()
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-	{
-		state = (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)) ? RUNNING : WALKING;
-		if (!state != RUNNING)
-			accelerate(-1);
-		else
-			accelerate(-2);
-	}
+	int dir = Input::check(sf::Keyboard::Right) - Input::check(sf::Keyboard::Left);
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-	{
-		state = (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)) ? RUNNING : WALKING;
-		if (state != RUNNING)
-			accelerate(1);
-		else
-			accelerate(2);
-	}
+	if (!Input::check(sf::Keyboard::LShift))
+		accelerate(1 * dir);
+	else
+		accelerate(2 * dir);
 
-	if ((!sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) && (!sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) && (abs(xspeed) > 0))
+	if ((!Input::check(sf::Keyboard::Left)) && (!Input::check(sf::Keyboard::Right)) && (abs(xspeed) > 0))
 	{
-		state = SLOWDOWN;
+		if (collide("solid", x, y + 1))
+		{
+			state = FRICTION;
 
-		if (abs(xspeed) > fspeed * BEngine::elapsed)
-			xspeed -= fspeed * BEngine::sign(xspeed) * BEngine::elapsed;
+			if (abs(xspeed) > fspeed * BEngine::elapsed)
+				xspeed -= fspeed * BEngine::sign(xspeed) * BEngine::elapsed;
+			else
+				xspeed = 0;
+		}
 		else
-			xspeed = 0;
+		{
+			if (abs(xspeed) > fspeed * BEngine::elapsed / 4)
+				xspeed -= fspeed * BEngine::sign(xspeed) * BEngine::elapsed / 4;
+			else
+				xspeed = 0;
+		}
 	}
 }
 
 void Player::inputy()
 {
-	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+	if (Input::pressed(sf::Keyboard::Up))
 	{
 		if (!collide("solid", x, y + 1))
 		{
+			wallTimer = wallTimerLimit;
 			if (collide("solid", x - 1, y))
 			{
-				BEngine::log("WALL JUMP");
 				state = JUMPING;
+				xspeed = mspeed;
 				yspeed = -wjspeed;
 			}
 			else if (collide("solid", x + 1, y))
 			{
-				BEngine::log("WALL JUMP");
 				state = JUMPING;
+				xspeed = -mspeed;
 				yspeed = -wjspeed;
 			}
 		}
 		else
 		{
-			state = JUMPING;
-			yspeed = -jspeed;
+			if (state == TURNAROUND)
+			{
+				BEngine::log("FRICTION JUMP");
+				state = JUMPING;
+				// TODO: Fix the xspeed stuff
+				xspeed = 0;
+				yspeed = -sjspeed;
+			}
+			else
+			{
+				state = JUMPING;
+				yspeed = -jspeed;
+			}
 		}
 	}
 
-	if ((!sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) && (yspeed < 0))
+	if ((!Input::check(sf::Keyboard::Up)) && (yspeed < 0))
 	{
 		yspeed += gspeed * BEngine::elapsed;
 	}
@@ -141,6 +153,8 @@ void Player::inputy()
 
 void Player::accelerate(int dir)
 {
+	state = (Input::check(sf::Keyboard::LShift)) ? RUNNING : WALKING;
+
 	if (BEngine::sign(xspeed) == BEngine::sign(dir))
 	{
 		xspeed += aspeed * dir * BEngine::elapsed;
@@ -154,7 +168,7 @@ void Player::accelerate(int dir)
 
 void Player::modSpeeds()
 {
-	if (!running)
+	if (!Input::check(sf::Keyboard::LShift))
 	{
 		if (abs(xspeed) > mspeed)
 		{
@@ -185,7 +199,17 @@ void Player::moveX()
 	for (int i = 0; i < abs((int)xspeed); i++)
 	{
 		if (!collide("solid", x + BEngine::sign(xspeed), y))
-			x += BEngine::sign(xspeed);
+		{
+			if ((collide("solid", x - BEngine::sign(xspeed), y)) && (!collide("solid", x, y + 1))) // On wall
+			{
+				if (wallTimer >= wallTimerLimit)
+				{
+					x += BEngine::sign(xspeed);
+				}
+			}
+			else
+				x += BEngine::sign(xspeed);
+		}
 		else
 		{
 			xspeed = 0;
@@ -196,6 +220,8 @@ void Player::moveX()
 	if (!collide("solid", x + (xspeed - (int)xspeed), y))
 	{
 		x += (xspeed - (int)xspeed);
+		if (collide("solid", x + 1, y)) x = ceil(x);
+		if (collide("solid", x - 1, y)) x = floor(x);
 	}
 	else
 	{
@@ -225,6 +251,8 @@ void Player::moveY()
 	if (!collide("solid", x, y + (yspeed - (int)yspeed)))
 	{
 		y += (yspeed - (int)yspeed);
+		if (collide("solid", x, y + 1)) y = ceil(y);
+		if (collide("solid", x, y - 1)) y = floor(y);
 	}
 	else
 	{
@@ -232,4 +260,9 @@ void Player::moveY()
 	}
 
 	yspeed /= BEngine::elapsed;
+
+	if ((state == FALLING) || (state == JUMPING))
+	{
+		//
+	}
 }
