@@ -109,7 +109,7 @@ void Player::inputx()
 
 void Player::inputy()
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
 		if (!collide("solid", x, y + 1))
 		{

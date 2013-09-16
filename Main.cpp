@@ -7,6 +7,7 @@
 #include "BEngine.h"
 
 #include "Entities\Player.h"
+#include "Entities\Solid.h"
 
 // Tutorial 18
 
@@ -25,23 +26,17 @@ int main()
 	World level;
 	BEngine::world(&level);
 
-	Entity w(0, 32);
-	w.width = 32;
-	w.height = 32;
-	w.type = "solid";
-	level.add(&w);
+	Solid left(0, 32);
+	level.add(&left);
 
-	Entity q(800-32, 32);
-	q.width = 32;
-	q.height = 32;
-	q.type = "solid";
-	level.add(&q);
+	for (int i = 0; i < 50; i++)
+	{
+		Solid* s = new Solid(i * 32, 64);
+		level.add(s);
+	}
 
-	Entity wall(0, 64);
-	wall.width = 800;
-	wall.height = 32;
-	wall.type = "solid";
-	level.add(&wall);
+	Solid right(32 * 50, 32);
+	level.add(&right);
 
 	Player p(50, 32);
 	level.add(&p);

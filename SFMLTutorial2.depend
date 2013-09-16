@@ -341,7 +341,7 @@
 	<string>
 	<vector>
 
-1379286370 source:c:\users\bret\c++projects\sfmltutorial2\main.cpp
+1379290422 source:c:\users\bret\c++projects\sfmltutorial2\main.cpp
 	<SFML/Graphics.hpp>
 	<iostream>
 	<cstdlib>
@@ -349,6 +349,7 @@
 	<ctime>
 	"BEngine.h"
 	"Entities\Player.h"
+	"Entities\Solid.h"
 
 1365233432 c:\sfml-2.0\include\sfml\graphics.hpp
 	<SFML/Window.hpp>
@@ -698,7 +699,7 @@
 	<SFML/Graphics.hpp>
 	"Entity.h"
 
-1379280090 source:c:\users\bret\c++projects\sfmltutorial2\world.cpp
+1379290592 source:c:\users\bret\c++projects\sfmltutorial2\world.cpp
 	"World.h"
 	"BEngine.h"
 	<iostream>
@@ -719,6 +720,17 @@
 	"../Entity.h"
 
 1379285643 c:\users\bret\c++projects\sfmltutorial2\entities\player.h
+	<SFML/Graphics.hpp>
+	"../Entity.h"
+
+1379290539 source:c:\users\bret\c++projects\sfmltutorial2\entities\solid.cpp
+	"Solid.h"
+	<iostream>
+	<cstdlib>
+	"../BEngine.h"
+	"../Entity.h"
+
+1379287309 c:\users\bret\c++projects\sfmltutorial2\entities\solid.h
 	<SFML/Graphics.hpp>
 	"../Entity.h"
 
