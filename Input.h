@@ -4,7 +4,7 @@
 #include <iostream>
 #include <vector>
 
-struct Define
+struct DefinedInput
 {
 	public:
 		std::string name;
@@ -17,16 +17,23 @@ class Input
 		static void init();
 		static void reset();
 
-		static void define(const char* name, int key, ...);
+		static void define(std::string name, int key, ...);
 
 		static bool pressed(int key);
 		static bool check(int key);
 		static bool released(int key);
 
+		static bool pressed(std::string name);
+		static bool check(std::string name);
+		static bool released(std::string name);
+
 		static void updatePressed(int key);
 		static void updateCheck(int key);
 		static void updateReleased(int key);
-	private:
+
+		static std::vector<DefinedInput*> definedInputs;
+
+	//private:
 		static std::vector<int> keyState;
 };
 

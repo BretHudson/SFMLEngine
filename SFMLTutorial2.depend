@@ -341,7 +341,7 @@
 	<string>
 	<vector>
 
-1379312247 source:c:\users\bret\c++projects\sfmltutorial2\main.cpp
+1379312837 source:c:\users\bret\c++projects\sfmltutorial2\main.cpp
 	<SFML/Graphics.hpp>
 	<iostream>
 	<cstdlib>
@@ -714,7 +714,7 @@
 	"BEngine.h"
 	<iostream>
 
-1379311673 source:c:\users\bret\c++projects\sfmltutorial2\entities\player.cpp
+1379319417 source:c:\users\bret\c++projects\sfmltutorial2\entities\player.cpp
 	"Player.h"
 	<iostream>
 	<cstdlib>
@@ -738,12 +738,12 @@
 	<SFML/Graphics.hpp>
 	"../Entity.h"
 
-1379311478 source:c:\users\bret\c++projects\sfmltutorial2\input.cpp
+1379322370 source:c:\users\bret\c++projects\sfmltutorial2\input.cpp
 	"Input.h"
 	"BEngine.h"
 	<cstdarg>
 
-1379311501 c:\users\bret\c++projects\sfmltutorial2\input.h
+1379322664 c:\users\bret\c++projects\sfmltutorial2\input.h
 	<iostream>
 	<vector>
 

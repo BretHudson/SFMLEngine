@@ -29,7 +29,7 @@ Player::Player(double x, double y) : Entity::Entity(x, y)
 	gspeed = 1850.0f;
 
 	wallTimer = 0;
-	wallTimerLimit = 0.35;
+	wallTimerLimit = 0.125;
 
 	state = STANDING;
 
@@ -45,7 +45,7 @@ Player::Player(double x, double y) : Entity::Entity(x, y)
 	StateName.push_back("falling");
 	StateName.push_back("sliding");
 
-	Input::define("fuck", sf::Keyboard::A, sf::Keyboard::B);
+	Input::define("fuck", sf::Keyboard::C, sf::Keyboard::Z, sf::Keyboard::G);
 }
 
 void Player::update()
@@ -195,6 +195,11 @@ void Player::movePlayer()
 void Player::moveX()
 {
 	xspeed *= BEngine::elapsed;
+
+	if (((collide("solid", x - 1, y)) || (collide("solid", x + 1, y))) && (wallTimer > wallTimerLimit))
+		wallTimer = 0;
+	else
+		wallTimer += BEngine::elapsed;
 
 	for (int i = 0; i < abs((int)xspeed); i++)
 	{

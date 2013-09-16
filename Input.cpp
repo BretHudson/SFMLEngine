@@ -4,7 +4,9 @@
 
 #include <cstdarg>
 
+std::vector<DefinedInput*> definedInputs;
 std::vector<int> Input::keyState;
+
 
 void Input::init()
 {
@@ -30,15 +32,21 @@ void Input::reset()
 	}
 }
 
-void Input::define(const char* name, int key, ...)
+void Input::define(std::string name, int key, ...)
 {
 	va_list arguments;
 
+	DefinedInput input;
+
 	for (va_start(arguments, key); key != NULL; key = va_arg(arguments, int))
 	{
-		BEngine::log(BEngine::itos(key));
+		if (key > sf::Keyboard::KeyCount)
+			break;
+		input.keys.push_back(key);
 	}
 
+	//definedInputs.push_back(&input);
+	keyState[key];
 }
 
 bool Input::pressed(int key)
@@ -54,6 +62,37 @@ bool Input::check(int key)
 bool Input::released(int key)
 {
 	return (keyState[key] == 2);
+}
+
+bool Input::pressed(std::string name)
+{
+	std::vector<DefinedInput*>::iterator definedInputsItertor;
+
+	for (definedInputsItertor = definedInputs.begin(); definedInputsItertor != definedInputs.end(); definedInputsItertor++)
+	{
+		if ((*definedInputsItertor)->name == name)
+		{
+			for (int i = 0; i < (*definedInputsItertor)->keys.size(); i++)
+			{
+				if ((*definedInputsItertor)->keys[i] == 0)
+					return true;
+			}
+		}
+	}
+
+	return false;
+}
+
+bool Input::check(std::string name)
+{
+	/*return (keyState[key] == 1);*/
+	return false;
+}
+
+bool Input::released(std::string name)
+{
+	/*return (keyState[key] == 2);*/
+	return false;
 }
 
 void Input::updatePressed(int key)
