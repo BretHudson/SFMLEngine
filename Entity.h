@@ -8,6 +8,7 @@ class Entity
 	public:
 		Entity();
 		Entity(double x, double y);
+		Entity(double x, double y, sf::Sprite* graphic);
 
 		virtual void added();
 		virtual void update();
@@ -20,6 +21,8 @@ class Entity
 		int width, height;
 		int layer;
 		std::string type;
+
+		sf::Sprite* graphic;
 
 	private:
 		//

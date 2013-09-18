@@ -27,6 +27,9 @@ class Player : public Entity
 
 		std::vector<std::string> StateName;
 
+		sf::Texture texture;
+		sf::Sprite sprite;
+
 	public:
 		// Move functions
 		void input();

@@ -55,6 +55,13 @@ Player::Player(double x, double y) : Entity::Entity(x, y)
 	Input::defineJoystick("jump", 1, 1);
 	Input::defineJoystick("run", 1, 3);
 	Input::defineJoystickAxis("left", "right", sf::Joystick::X, 15.5f);
+
+	if (texture.loadFromFile("assets/image.png"))
+	{
+		sprite.setTexture(texture);
+		sprite.setTextureRect(sf::IntRect(0, 0, 32, 32));
+		graphic = &sprite;
+	}
 }
 
 void Player::update()
@@ -73,11 +80,11 @@ void Player::update()
 
 void Player::render(sf::RenderTexture* Buffer)
 {
-	sf::RectangleShape rect(sf::Vector2f(width, height));
+	Entity::render(Buffer);
+	/*sf::RectangleShape rect(sf::Vector2f(width, height));
 	rect.setFillColor(sf::Color(255, 127 + x, 9 + y, 255));
-	//rect.setFillColor(sf::Color(255, 127, 9, 255));
 	rect.setPosition(this->x, this->y);
-	Buffer->draw(rect);
+	Buffer->draw(rect);*/
 }
 
 void Player::input()
