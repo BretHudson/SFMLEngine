@@ -24,11 +24,14 @@ void Strip::update()
 
 	while (elapsed >= (float)(speed / BEngine::framerate) / framecount)
 	{
+		frame++;
 		if (frame >= framecount)
-		if (loop)
-			frame = 0;
-		else
-			frame--;
+		{
+			if (loop)
+				frame = 0;
+			else
+				frame--;
+		}
 		elapsed -= (float)(speed / BEngine::framerate) / framecount;
 	}
 }
