@@ -17,10 +17,10 @@ Player::Player(double x, double y) : Entity::Entity(x, y)
 	yspeed = 0.0f;
 
 	// Horizontal speeds
-	aspeed = 1150.0f;
-	fspeed = 1550.0f;
+	aspeed = 1380.0f;
+	fspeed = 2000.0f;
 	mspeed = 620.0f;
-	rspeed = 930.0f;
+	rspeed = 1000.0f;
 
 	// Vertical speeds
 	jspeed = 700.0f;
@@ -45,7 +45,16 @@ Player::Player(double x, double y) : Entity::Entity(x, y)
 	StateName.push_back("falling");
 	StateName.push_back("sliding");
 
-	Input::define("fuck", sf::Keyboard::C, sf::Keyboard::Z, sf::Keyboard::G);
+	Input::define("left", sf::Keyboard::Left, sf::Keyboard::A);
+	Input::define("right", sf::Keyboard::Right, sf::Keyboard::D);
+	Input::define("jump", sf::Keyboard::Up, sf::Keyboard::Space, 0);
+	Input::define("run", sf::Keyboard::LShift);
+
+	//Input::define("left", sf::Keyboard::Left, sf::Keyboard::A);
+	//Input::define("right", sf::Keyboard::Right, sf::Keyboard::D);
+	Input::defineJoystick("jump", 1, 1);
+	Input::defineJoystick("run", 1, 3);
+	Input::defineJoystickAxis("left", "right", sf::Joystick::X, 15.5f);
 }
 
 void Player::update()
@@ -79,14 +88,14 @@ void Player::input()
 
 void Player::inputx()
 {
-	int dir = Input::check(sf::Keyboard::Right) - Input::check(sf::Keyboard::Left);
+	int dir = Input::check("right") - Input::check("left");
 
-	if (!Input::check(sf::Keyboard::LShift))
+	if (!Input::check("run"))
 		accelerate(1 * dir);
 	else
 		accelerate(2 * dir);
 
-	if ((!Input::check(sf::Keyboard::Left)) && (!Input::check(sf::Keyboard::Right)) && (abs(xspeed) > 0))
+	if ((!Input::check("left")) && (!Input::check("right")) && (abs(xspeed) > 0))
 	{
 		if (collide("solid", x, y + 1))
 		{
@@ -109,7 +118,7 @@ void Player::inputx()
 
 void Player::inputy()
 {
-	if (Input::pressed(sf::Keyboard::Up))
+	if (Input::pressed("jump"))
 	{
 		if (!collide("solid", x, y + 1))
 		{
@@ -145,7 +154,7 @@ void Player::inputy()
 		}
 	}
 
-	if ((!Input::check(sf::Keyboard::Up)) && (yspeed < 0))
+	if ((!Input::check("jump")) && (yspeed < 0))
 	{
 		yspeed += gspeed * BEngine::elapsed;
 	}
@@ -153,7 +162,7 @@ void Player::inputy()
 
 void Player::accelerate(int dir)
 {
-	state = (Input::check(sf::Keyboard::LShift)) ? RUNNING : WALKING;
+	state = (Input::check("run")) ? RUNNING : WALKING;
 
 	if (BEngine::sign(xspeed) == BEngine::sign(dir))
 	{
@@ -168,7 +177,7 @@ void Player::accelerate(int dir)
 
 void Player::modSpeeds()
 {
-	if (!Input::check(sf::Keyboard::LShift))
+	if (!Input::check("run"))
 	{
 		if (abs(xspeed) > mspeed)
 		{

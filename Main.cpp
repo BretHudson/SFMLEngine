@@ -17,7 +17,7 @@ int main()
 	sf::Vector2i blocksize(400, 300);
 
 	sf::RenderWindow Window;
-	Window.create(sf::VideoMode(screensize.x, screensize.y), "SFML Tutorial");
+	Window.create(sf::VideoMode(screensize.x, screensize.y), "Tincan Adventure");
 
 	Window.setKeyRepeatEnabled(false);
 
@@ -88,6 +88,12 @@ int main()
 					break;
 				case sf::Event::KeyReleased:
 					Input::updateReleased(Event.key.code);
+					break;
+				case sf::Event::JoystickButtonPressed:
+					Input::updateJoystickPressed(Event.joystickButton.joystickId, Event.joystickButton.button);
+					break;
+				case sf::Event::JoystickButtonReleased:
+					Input::updateJoystickReleased(Event.joystickButton.joystickId, Event.joystickButton.button);
 					break;
 			}
 		}

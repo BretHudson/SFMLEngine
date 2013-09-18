@@ -48,8 +48,12 @@
 		<Unit filename="BEngine.h" />
 		<Unit filename="Entities/Player.cpp" />
 		<Unit filename="Entities/Player.h" />
+		<Unit filename="Entities/Solid.cpp" />
+		<Unit filename="Entities/Solid.h" />
 		<Unit filename="Entity.cpp" />
 		<Unit filename="Entity.h" />
+		<Unit filename="Input.cpp" />
+		<Unit filename="Input.h" />
 		<Unit filename="Main.cpp" />
 		<Unit filename="World.cpp" />
 		<Unit filename="World.h" />
