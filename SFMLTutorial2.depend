@@ -341,7 +341,7 @@
 	<string>
 	<vector>
 
-1379484871 source:c:\users\bret\c++projects\sfmltutorial2\main.cpp
+1379491244 source:c:\users\bret\c++projects\sfmltutorial2\main.cpp
 	<SFML/Graphics.hpp>
 	<iostream>
 	<cstdlib>
@@ -714,7 +714,7 @@
 	"BEngine.h"
 	<iostream>
 
-1379485180 source:c:\users\bret\c++projects\sfmltutorial2\entities\player.cpp
+1379490186 source:c:\users\bret\c++projects\sfmltutorial2\entities\player.cpp
 	"Player.h"
 	<iostream>
 	<cstdlib>
@@ -722,9 +722,10 @@
 	"../BEngine.h"
 	"../Entity.h"
 
-1379485144 c:\users\bret\c++projects\sfmltutorial2\entities\player.h
+1379489495 c:\users\bret\c++projects\sfmltutorial2\entities\player.h
 	<SFML/Graphics.hpp>
 	"../Entity.h"
+	"../Spritesheet.h"
 
 1379297206 source:c:\users\bret\c++projects\sfmltutorial2\entities\solid.cpp
 	"Solid.h"
@@ -746,4 +747,12 @@
 1379375835 c:\users\bret\c++projects\sfmltutorial2\input.h
 	<iostream>
 	<vector>
+
+1379491216 source:c:\users\bret\c++projects\sfmltutorial2\spritesheet.cpp
+	"Spritesheet.h"
+	"BEngine.h"
+	<iostream>
+
+1379491590 c:\users\bret\c++projects\sfmltutorial2\spritesheet.h
+	<SFML/Graphics.hpp>
 

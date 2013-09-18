@@ -62,10 +62,15 @@ Player::Player(double x, double y) : Entity::Entity(x, y)
 		sprite.setTextureRect(sf::IntRect(0, 0, 32, 32));
 		graphic = &sprite;
 	}
+
+	spritesheet = new Spritesheet("assets/image.png", 32, 32);
+	//spritesheet->add("down", int(0, 0, 1));
+	graphic = spritesheet->getSprite();
 }
 
 void Player::update()
 {
+	spritesheet->update();
 	if (yspeed != 0)
 		state = STANDING;
 	else

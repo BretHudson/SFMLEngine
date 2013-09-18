@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "../Entity.h"
+#include "../Spritesheet.h"
 
 class Player : public Entity
 {
@@ -29,6 +30,7 @@ class Player : public Entity
 
 		sf::Texture texture;
 		sf::Sprite sprite;
+		Spritesheet* spritesheet;
 
 	public:
 		// Move functions
