@@ -55,6 +55,8 @@
 		<Unit filename="Input.cpp" />
 		<Unit filename="Input.h" />
 		<Unit filename="Main.cpp" />
+		<Unit filename="Spritesheet.cpp" />
+		<Unit filename="Spritesheet.h" />
 		<Unit filename="World.cpp" />
 		<Unit filename="World.h" />
 		<Extensions>

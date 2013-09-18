@@ -99,11 +99,11 @@ void Player::update()
 
 void Player::render(sf::RenderTexture* Buffer)
 {
-	Entity::render(Buffer);
-	/*sf::RectangleShape rect(sf::Vector2f(width, height));
+	sf::RectangleShape rect(sf::Vector2f(width, height));
 	rect.setFillColor(sf::Color(255, 127 + x, 9 + y, 255));
 	rect.setPosition(this->x, this->y);
-	Buffer->draw(rect);*/
+	Buffer->draw(rect);
+	Entity::render(Buffer);
 }
 
 void Player::input()
