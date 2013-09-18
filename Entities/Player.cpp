@@ -64,7 +64,19 @@ Player::Player(double x, double y) : Entity::Entity(x, y)
 	}
 
 	spritesheet = new Spritesheet("assets/image.png", 32, 32);
-	//spritesheet->add("down", int(0, 0, 1));
+	int stand[1] = {0};
+	int down[3] = {0, 1, 2};
+	int left[3] = {3, 4, 5};
+	int right[3] = {6, 7, 8};
+	int up[3] = {9, 10, 11};
+
+	int spriteSpeed = 20;
+	spritesheet->add("stand", stand, 1, spriteSpeed);
+	spritesheet->add("down", down, 3, spriteSpeed);
+	spritesheet->add("left", left, 3, spriteSpeed);
+	spritesheet->add("right", right, 3, spriteSpeed);
+	spritesheet->add("up", up, 3, spriteSpeed);
+	spritesheet->play("stand");
 	graphic = spritesheet->getSprite();
 }
 
@@ -79,6 +91,8 @@ void Player::update()
 	input();
 	modSpeeds();
 	movePlayer();
+
+	(xspeed < 0) ? spritesheet->play("left") : ((xspeed > 0) ? spritesheet->play("right") : spritesheet->play("stand"));
 
 	//BEngine::log("State: " + StateName[state]);
 }
