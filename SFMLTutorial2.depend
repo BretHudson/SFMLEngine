@@ -837,3 +837,84 @@
 	"BEngine.h"
 	<iostream>
 
+1380206252 source:c:\users\bret\documents\github\sfmltutorial2\bengine.cpp
+	"BEngine.h"
+	<SFML/Graphics.hpp>
+	<iostream>
+	<sstream>
+
+1380206252 c:\users\bret\documents\github\sfmltutorial2\bengine.h
+	"World.h"
+	"Input.h"
+	<SFML/Graphics.hpp>
+
+1380206252 c:\users\bret\documents\github\sfmltutorial2\world.h
+	<SFML/Graphics.hpp>
+	"Entity.h"
+
+1380206252 c:\users\bret\documents\github\sfmltutorial2\entity.h
+	<SFML/Graphics.hpp>
+
+1380206252 c:\users\bret\documents\github\sfmltutorial2\input.h
+	<iostream>
+	<vector>
+
+1380206252 source:c:\users\bret\documents\github\sfmltutorial2\entities\player.cpp
+	"Player.h"
+	<iostream>
+	<cstdlib>
+	<cmath>
+	"../BEngine.h"
+	"../Entity.h"
+
+1380206252 c:\users\bret\documents\github\sfmltutorial2\entities\player.h
+	<SFML/Graphics.hpp>
+	"../Entity.h"
+	"../Spritesheet.h"
+
+1380206252 c:\users\bret\documents\github\sfmltutorial2\spritesheet.h
+	<SFML/Graphics.hpp>
+
+1380206252 source:c:\users\bret\documents\github\sfmltutorial2\entities\solid.cpp
+	"Solid.h"
+	<iostream>
+	<cstdlib>
+	"../BEngine.h"
+	"../Entity.h"
+	"../Input.h"
+
+1380206252 c:\users\bret\documents\github\sfmltutorial2\entities\solid.h
+	<SFML/Graphics.hpp>
+	"../Entity.h"
+
+1380206252 source:c:\users\bret\documents\github\sfmltutorial2\entity.cpp
+	"Entity.h"
+	"BEngine.h"
+	<iostream>
+
+1380206252 source:c:\users\bret\documents\github\sfmltutorial2\input.cpp
+	"Input.h"
+	"BEngine.h"
+	<cstdarg>
+
+1380206252 source:c:\users\bret\documents\github\sfmltutorial2\main.cpp
+	<SFML/Graphics.hpp>
+	<iostream>
+	<cstdlib>
+	<string>
+	<ctime>
+	"BEngine.h"
+	"Input.h"
+	"Entities\Player.h"
+	"Entities\Solid.h"
+
+1380206252 source:c:\users\bret\documents\github\sfmltutorial2\spritesheet.cpp
+	"Spritesheet.h"
+	"BEngine.h"
+	<iostream>
+
+1380206252 source:c:\users\bret\documents\github\sfmltutorial2\world.cpp
+	"World.h"
+	"BEngine.h"
+	<iostream>
+
