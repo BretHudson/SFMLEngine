@@ -92,8 +92,6 @@ void Player::update()
 	modSpeeds();
 	movePlayer();
 
-	(xspeed < 0) ? spritesheet->play("left") : ((xspeed > 0) ? spritesheet->play("right") : spritesheet->play("stand"));
-
 	//BEngine::log("State: " + StateName[state]);
 }
 
@@ -192,10 +190,12 @@ void Player::accelerate(int dir)
 
 	if (BEngine::sign(xspeed) == BEngine::sign(dir))
 	{
+        (xspeed < 0) ? spritesheet->play("left") : ((xspeed > 0) ? spritesheet->play("right") : spritesheet->play("stand"));
 		xspeed += aspeed * dir * BEngine::elapsed;
 	}
 	else
 	{
+        (xspeed < 0) ? spritesheet->play("right") : ((xspeed > 0) ? spritesheet->play("left") : spritesheet->play("stand"));
 		state = TURNAROUND;
 		xspeed += fspeed * dir * BEngine::elapsed;
 	}

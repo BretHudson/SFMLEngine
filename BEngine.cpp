@@ -47,7 +47,7 @@ namespace BEngine
 
 	void log(sf::String s)
 	{
-		std::cout << "BEngine: " << s.toAnsiString() << std::endl;
+            std::cout << "BEngine: " << s.toAnsiString() << std::endl;
 	}
 
 	void error(sf::String s)
