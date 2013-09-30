@@ -195,7 +195,11 @@ void Player::accelerate(int dir)
 	}
 	else
 	{
-        (xspeed < 0) ? spritesheet->play("right") : ((xspeed > 0) ? spritesheet->play("left") : spritesheet->play("stand"));
+        if ((Input::check("left")) || (Input::check("right")))
+            (xspeed < 0) ? spritesheet->play("right") : ((xspeed > 0) ? spritesheet->play("left") : spritesheet->play("stand"));
+        else
+            (xspeed < 0) ? spritesheet->play("left") : ((xspeed > 0) ? spritesheet->play("right") : spritesheet->play("stand"));
+
 		state = TURNAROUND;
 		xspeed += fspeed * dir * BEngine::elapsed;
 	}

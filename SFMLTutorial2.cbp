@@ -38,11 +38,10 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
-			<Add option="-DSFML_STATIC" />
-			<Add directory="C:/SFML-2.0/include" />
+			<Add directory="C:/SFML-2.1/include" />
 		</Compiler>
 		<Linker>
-			<Add directory="C:/SFML-2.0/lib" />
+			<Add directory="C:/SFML-2.1/lib" />
 		</Linker>
 		<Unit filename="BEngine.cpp" />
 		<Unit filename="BEngine.h" />
