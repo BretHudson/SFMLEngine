@@ -17,8 +17,8 @@ Player::Player(double x, double y) : Entity::Entity(x, y)
 	yspeed = 0.0f;
 
 	// Horizontal speeds
-	aspeed = 1750.0f;
-	fspeed = 2000.0f;
+	aspeed = 2050.0f;
+	fspeed = 2300.0f;
 	mspeed = 660.0f;
 	rspeed = 1000.0f;
 
@@ -26,7 +26,7 @@ Player::Player(double x, double y) : Entity::Entity(x, y)
 	jspeed = 700.0f;
 	sjspeed = 800.0f;
 	wjspeed = 900.0f;
-	gspeed = 1800.0f;
+	gspeed = 1700.0f;
 
 	wallTimer = 0;
 	wallTimerLimit = 0.125;
@@ -307,6 +307,6 @@ void Player::moveY()
 
 	if ((state == FALLING) || (state == JUMPING))
 	{
-		//
+		// TODO: Figure out what this is, haha
 	}
 }

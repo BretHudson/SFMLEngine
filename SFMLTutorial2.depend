@@ -341,7 +341,7 @@
 	<string>
 	<vector>
 
-1380298162 source:c:\users\bret\c++projects\sfmltutorial2\main.cpp
+1381166835 source:c:\users\bret\c++projects\sfmltutorial2\main.cpp
 	<SFML/Graphics.hpp>
 	<iostream>
 	<cstdlib>
@@ -351,6 +351,7 @@
 	"Input.h"
 	"Entities\Player.h"
 	"Entities\Solid.h"
+	"Entities\Spring.h"
 
 1380119347 c:\sfml-2.0\include\sfml\graphics.hpp
 	<SFML/Window.hpp>
@@ -686,7 +687,7 @@
 	<string>
 	<vector>
 
-1380290760 source:c:\users\bret\c++projects\sfmltutorial2\bengine.cpp
+1381166518 source:c:\users\bret\c++projects\sfmltutorial2\bengine.cpp
 	"BEngine.h"
 	<SFML/Graphics.hpp>
 	<iostream>
@@ -714,7 +715,7 @@
 	"BEngine.h"
 	<iostream>
 
-1380298052 source:c:\users\bret\c++projects\sfmltutorial2\entities\player.cpp
+1381166471 source:c:\users\bret\c++projects\sfmltutorial2\entities\player.cpp
 	"Player.h"
 	<iostream>
 	<cstdlib>
@@ -917,4 +918,16 @@
 	"World.h"
 	"BEngine.h"
 	<iostream>
+
+1381166843 source:c:\users\bret\c++projects\sfmltutorial2\entities\spring.cpp
+	"Spring.h"
+	<iostream>
+	<cstdlib>
+	"../BEngine.h"
+	"../Entity.h"
+	"../Input.h"
+
+1381167064 c:\users\bret\c++projects\sfmltutorial2\entities\spring.h
+	<SFML/Graphics.hpp>
+	"../Entity.h"
 

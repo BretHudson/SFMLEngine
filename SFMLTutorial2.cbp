@@ -49,6 +49,8 @@
 		<Unit filename="Entities/Player.h" />
 		<Unit filename="Entities/Solid.cpp" />
 		<Unit filename="Entities/Solid.h" />
+		<Unit filename="Entities/Spring.cpp" />
+		<Unit filename="Entities/Spring.h" />
 		<Unit filename="Entity.cpp" />
 		<Unit filename="Entity.h" />
 		<Unit filename="Input.cpp" />

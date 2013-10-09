@@ -10,6 +10,7 @@
 
 #include "Entities\Player.h"
 #include "Entities\Solid.h"
+#include "Entities\Spring.h"
 
 int main()
 {
@@ -46,6 +47,8 @@ int main()
 
 	Player player(50, 32);
 	level.add(&player);
+	Spring spring(50 + 32, 32);
+	level.add(&spring);
 
 	srand(time(0));
 

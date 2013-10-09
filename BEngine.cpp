@@ -4,33 +4,6 @@
 #include <iostream>
 #include <sstream>
 
-/*void BEngine::log(sf::String s)
-{
-	std::cout << "BEngine: " << s.toAnsiString() << std::endl;
-}
-
-void BEngine::update()
-{
-	if (world())
-		world()->update();
-}
-
-void BEngine::render(sf::RenderWindow* Window)
-{
-	if (world())
-		world()->render(Window);
-}
-
-World* BEngine::world()
-{
-	return BEngine::_world;
-}
-
-void BEngine::world(World* w)
-{
-	BEngine::_world = w;
-}*/
-
 namespace BEngine
 {
 	World* _world = NULL;
@@ -47,7 +20,7 @@ namespace BEngine
 
 	void log(sf::String s)
 	{
-            std::cout << "BEngine: " << s.toAnsiString() << std::endl;
+        std::cout << "BEngine: " << s.toAnsiString() << std::endl;
 	}
 
 	void error(sf::String s)
