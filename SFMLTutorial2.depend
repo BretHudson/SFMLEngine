@@ -341,7 +341,7 @@
 	<string>
 	<vector>
 
-1381166835 source:c:\users\bret\c++projects\sfmltutorial2\main.cpp
+1382804651 source:c:\users\bret\c++projects\sfmltutorial2\main.cpp
 	<SFML/Graphics.hpp>
 	<iostream>
 	<cstdlib>
@@ -687,13 +687,13 @@
 	<string>
 	<vector>
 
-1381166518 source:c:\users\bret\c++projects\sfmltutorial2\bengine.cpp
+1382804785 source:c:\users\bret\c++projects\sfmltutorial2\bengine.cpp
 	"BEngine.h"
 	<SFML/Graphics.hpp>
 	<iostream>
 	<sstream>
 
-1380261794 c:\users\bret\c++projects\sfmltutorial2\bengine.h
+1382804553 c:\users\bret\c++projects\sfmltutorial2\bengine.h
 	"World.h"
 	"Input.h"
 	<SFML/Graphics.hpp>

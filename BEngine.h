@@ -50,6 +50,10 @@ namespace BEngine
 {
 	extern World* _world;
 
+    extern sf::Vector2i screensize;
+	extern sf::RenderWindow Window;
+	extern sf::RenderTexture Buffer;
+
 	extern sf::Clock _deltaClock;
 	extern sf::Time _deltaTime;
 	extern int framerate;
@@ -60,8 +64,11 @@ namespace BEngine
 
 	extern sf::View camera;
 
+    extern void init(int width, int height);
+    extern void init(int width, int height, int frate);
 	extern void log(sf::String s);
 	extern void error(sf::String s);
+	extern void loop();
 	extern void update();
 	extern void render(sf::RenderTexture* Buffer);
 
